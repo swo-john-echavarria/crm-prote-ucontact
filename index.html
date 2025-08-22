@@ -97,7 +97,7 @@
             timer: 2000,
             showConfirmButton: false,
           }).then(() => {
-            window.location.href = "https://tusistema.com/dashboard";
+            location.reload(); // Recargar el formulario para esperar nuevo llamado
           });
         } catch (error) {
           console.error("Error al enviar postMessage:", error);
@@ -127,7 +127,7 @@
             timer: 1500,
             showConfirmButton: false,
           }).then(() => {
-            window.location.href = "https://tusistema.com/dashboard";
+            location.reload(); // Recargar el formulario para esperar nuevo llamado
           });
         } catch (error) {
           console.error("Error al cerrar:", error);
