@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Formulario CRM Externo</title>
-    https://cdn.jsdelivr.net/npm/sweetalert2@11
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -97,7 +97,7 @@
             timer: 2000,
             showConfirmButton: false,
           }).then(() => {
-            window.location.href = "https://tusistema.com/dashboard"; // Redirección de respaldo
+            window.location.href = "https://tusistema.com/dashboard";
           });
         } catch (error) {
           console.error("Error al enviar postMessage:", error);
