@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Formulario CRM Externo</title>
+    https://cdn.jsdelivr.net/npm/sweetalert2@11
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -79,11 +80,58 @@
         };
 
         console.log("Datos guardados:", datos);
-        window.parent.postMessage("cerrarFormulario", "*");
+
+        try {
+          window.parent.postMessage(
+            {
+              action: "closeInteraction",
+              interactionId: datos.idcaso || "sin_id",
+            },
+            "*"
+          );
+
+          Swal.fire({
+            icon: "success",
+            title: "Interacción cerrada",
+            text: "Se notificó correctamente a uContact.",
+            timer: 2000,
+            showConfirmButton: false,
+          }).then(() => {
+            window.location.href = "https://tusistema.com/dashboard"; // Redirección de respaldo
+          });
+        } catch (error) {
+          console.error("Error al enviar postMessage:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No se pudo cerrar la interacción.",
+          });
+        }
       }
 
       function cerrar() {
-        window.parent.postMessage("cerrarFormulario", "*");
+        try {
+          window.parent.postMessage(
+            {
+              action: "closeInteraction",
+              interactionId:
+                document.getElementById("idcaso").value || "sin_id",
+            },
+            "*"
+          );
+
+          Swal.fire({
+            icon: "info",
+            title: "Formulario cerrado",
+            text: "Se notificó el cierre sin guardar.",
+            timer: 1500,
+            showConfirmButton: false,
+          }).then(() => {
+            window.location.href = "https://tusistema.com/dashboard";
+          });
+        } catch (error) {
+          console.error("Error al cerrar:", error);
+        }
       }
 
       window.onload = obtenerParametros;
