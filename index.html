@@ -58,6 +58,17 @@
     </div>
 
     <script>
+      function obtenerParametros() {
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById("Empleado_Id").value =
+          params.get("Empleado_Id") || "";
+        document.getElementById("Nombre").value = params.get("Nombre") || "";
+        document.getElementById("Id").value = params.get("Id") || "";
+        document.getElementById("idcaso").value = params.get("idcaso") || "";
+        document.getElementById("descripcion").value =
+          params.get("descripcion") || "";
+      }
+
       function guardarYCerrar() {
         const datos = {
           Empleado_Id: document.getElementById("Empleado_Id").value,
@@ -74,6 +85,8 @@
       function cerrar() {
         window.parent.postMessage("cerrarFormulario", "*");
       }
+
+      window.onload = obtenerParametros;
     </script>
   </body>
 </html>
