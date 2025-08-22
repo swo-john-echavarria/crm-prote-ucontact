@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario CRM Externo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        box-sizing: border-box;
+      }
+      button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .button-group {
+        display: flex;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Formulario CRM Externo</h2>
+
+    <label for="Empleado_Id">ID del Empleado</label>
+    <input type="text" id="Empleado_Id" name="Empleado_Id" />
+
+    <label for="Nombre">Nombre</label>
+    <input type="text" id="Nombre" name="Nombre" />
+
+    <label for="Id">ID Interno</label>
+    <input type="text" id="Id" name="Id" />
+
+    <label for="idcaso">ID del Caso</label>
+    <input type="text" id="idcaso" name="idcaso" />
+
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+
+    <div class="button-group">
+      <button onclick="guardarYCerrar()">Salvar y cerrar</button>
+      <button onclick="cerrar()">Cerrar</button>
+    </div>
+
+    <script>
+      function guardarYCerrar() {
+        const datos = {
+          Empleado_Id: document.getElementById("Empleado_Id").value,
+          Nombre: document.getElementById("Nombre").value,
+          Id: document.getElementById("Id").value,
+          idcaso: document.getElementById("idcaso").value,
+          descripcion: document.getElementById("descripcion").value,
+        };
+
+        console.log("Datos guardados:", datos);
+        window.parent.postMessage("cerrarFormulario", "*");
+      }
+
+      function cerrar() {
+        window.parent.postMessage("cerrarFormulario", "*");
+      }
+    </script>
+  </body>
+</html>
